@@ -1,0 +1,31 @@
+<h6 class="mb-4">Order Summary</h6>
+<div class="d-flex justify-content-between align-items-center">
+  <div>Price ({{ cartItems.length }} items)</div>
+  <div>
+    <strong>{{ cartItemsPrice | currency : "USD" }}</strong>
+  </div>
+</div>
+<hr />
+<div class="d-flex justify-content-between align-items-center">
+  <div>Discount</div>
+  <div class="text-success">
+    <strong>{{ cartItemsDiscount | currency : "USD" }}</strong>
+  </div>
+</div>
+<hr />
+<div class="d-flex justify-content-between align-items-center">
+  <div>Delivery Charge</div>
+  <div>
+    <strong *ngIf="!deliveryCharge">FREE</strong>
+    <strong *ngIf="deliveryCharge">{{
+      deliveryCharge | currency : "USD"
+    }}</strong>
+  </div>
+</div>
+<hr />
+<div class="d-flex justify-content-between">
+  <h4>TOTAL</h4>
+  <h4>
+    <strong>{{ total | currency : "USD" }}</strong>
+  </h4>
+</div>

@@ -1,0 +1,44 @@
+<div class="card-body p-md-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+        Search Results
+      </p>
+
+      <div class="card mb-3" *ngFor="let item of searchResult">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <a routerLink="/details/{{ item.id }}">
+              <img
+                src="{{ item.image }}"
+                alt="{{ item.title }}"
+                class="card-img"
+              />
+            </a>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a
+                  routerLink="/details/{{ item.id }}"
+                  class="link-dark link-offset-2 link-underline link-underline-opacity-0"
+                >
+                  {{ item.title }}
+                </a>
+              </h5>
+              <p class="card-text">
+                <strong> $ {{ item.price }} </strong>
+              </p>
+              <p class="card-text">
+                {{ item.description }}
+              </p>
+              <p class="card-text">
+                <small class="text-muted">{{ item.type }}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

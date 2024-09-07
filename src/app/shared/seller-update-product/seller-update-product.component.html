@@ -1,0 +1,107 @@
+<div class="card-body p-md-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+        Add New Product
+      </p>
+      <div
+        *ngIf="updateProductMessage !== ''"
+        class="alert alert-success"
+        role="alert"
+      >
+        {{ updateProductMessage }}
+      </div>
+
+      <form #addProduct="ngForm" (ngSubmit)="submit(addProduct.value)">
+        <div data-mdb-input-init class="form-outline mb-4">
+          <label class="form-label" for="product-title">Title</label>
+          <input
+            type="text"
+            id="product-title"
+            class="form-control"
+            name="title"
+            ngModel="{{ productData?.title }}"
+          />
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+          <label class="form-label"> Type </label>
+          <select
+            data-mdb-select-init
+            class="form-select"
+            name="type"
+            ngModel="{{ productData?.type }}"
+          >
+            <option value="vegetable">Vegetable</option>
+            <option value="fruit">Fruit</option>
+          </select>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+          <label class="form-label" for="product-description">
+            Description
+          </label>
+          <textarea
+            class="form-control"
+            id="product-description"
+            rows="4"
+            name="description"
+            ngModel="{{ productData?.description }}"
+          ></textarea>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+          <label class="form-label" for="product-image"> Image URL </label>
+          <input
+            type="text"
+            id="product-image"
+            class="form-control"
+            name="image"
+            ngModel="{{ productData?.image }}"
+          />
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+          <label class="form-label" for="product-price">Price</label>
+          <input
+            type="number"
+            id="product-price"
+            class="form-control"
+            name="price"
+            ngModel="{{ productData?.price }}"
+          />
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+          <label class="form-label" for="product-discount">
+            Discount (in percentage)
+          </label>
+          <input
+            type="number"
+            id="product-discount"
+            class="form-control"
+            name="discount"
+            ngModel="{{ productData?.discount }}"
+          />
+        </div>
+
+        <input
+          type="hidden"
+          id="form6Example5"
+          class="form-control invisible"
+          name="discountUnits"
+          [ngModel]="'percent'"
+        />
+
+        <!-- Submit button -->
+        <button
+          data-mdb-ripple-init
+          type="submit"
+          class="btn btn-primary btn-block mb-4"
+        >
+          Update Product
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<!-- Jumbotron -->
+<div class="bg-dark text-white py-5">
+  <div class="container py-5">
+    <h1>
+      Best products & <br />
+      brands in our store
+    </h1>
+    <p>Trendy Products, Factory Prices, Excellent Service</p>
+  </div>
+</div>
+<!-- Jumbotron -->
+
+<div class="d-flex">
+  <div class="row row-cols-1 row-cols-md-4 g-4 m-4">
+    <app-product
+      [product]="product"
+      *ngFor="let product of products"
+    ></app-product>
+  </div>
+</div>

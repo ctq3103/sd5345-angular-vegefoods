@@ -1,0 +1,74 @@
+<div class="p-md-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-8">
+      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">My Orders</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orderData">
+            <td>
+              <strong>#{{ order.id }}</strong>
+            </td>
+            <td>{{ order.totalPrice }}</td>
+            <td>In Progress</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger btn-rounded"
+                (click)="openCancelModal(order.id)"
+                data-bs-toggle="modal"
+                data-bs-target="#cancelModal"
+              >
+                Cancel Order
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Cancel Modal -->
+<div
+  class="modal fade"
+  id="cancelModal"
+  tabindex="-1"
+  aria-labelledby="cancelModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelModalLabel">Cancel Order</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Are you sure you want to cancel this order?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="confirmCancelOrder()"
+          data-bs-dismiss="modal"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

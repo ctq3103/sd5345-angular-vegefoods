@@ -1,0 +1,56 @@
+/* .header {
+  background-color: #b2fce4;
+  padding: 0 20px;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+} */
+
+.header {
+  background-color: #b2fce4;
+}
+
+.main-logo {
+  color: #000000;
+  text-decoration: none;
+  font-size: 40px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.head-right-item {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  font-size: large;
+  font-weight: 400;
+}
+
+.cart {
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+.fa-stack[data-count]:after {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  content: attr(data-count);
+  font-size: 40%;
+  padding: 0.6em;
+  border-radius: 999px;
+  line-height: 0.75em;
+  color: #ffffff;
+  text-align: center;
+  min-width: 2em;
+  font-weight: bold;
+  background: #000000;
+  border-style: solid;
+}
+
+.fa-circle {
+  color: #fff;
+}

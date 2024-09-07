@@ -1,0 +1,114 @@
+<!-- Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary header">
+  <div class="container-fluid justify-content-between">
+    <!-- Left elements -->
+    <div class="d-flex">
+      <!-- Brand -->
+      <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
+        VEGEFOODS
+      </a>
+
+      <!-- Search form -->
+      <form
+        class="input-group w-auto my-auto d-none d-sm-flex position-relative"
+      >
+        <input
+          autocomplete="off"
+          type="search"
+          class="form-control rounded"
+          placeholder="Search"
+          style="min-width: 125px"
+          (keyup)="searchProduct($event)"
+          (blur)="hideSearch()"
+          #searchInput
+        />
+        <button class="btn btn-dark" (click)="submitSearch(searchInput.value)">
+          <i class="fas fa-search"></i>
+        </button>
+        <ul
+          class="list-group position-absolute w-100"
+          *ngIf="searchResult"
+          style="top: 100%; z-index: 1000"
+        >
+          <li class="list-group-item" *ngFor="let item of searchResult">
+            <a (mousedown)="redirectToDetails(item.id)">{{ item.title }}</a>
+          </li>
+        </ul>
+      </form>
+    </div>
+    <!-- Left elements -->
+
+    <!-- Right elements -->
+    <div [ngSwitch]="menuType">
+      <ul *ngSwitchCase="'default'" class="navbar-nav flex-row">
+        <li class="nav-item me-3 me-lg-1">
+          <a class="nav-link" routerLink="seller-auth"> Seller Login</a>
+        </li>
+        <li><a class="nav-link" routerLink="user-auth">Buyer Login</a></li>
+        <li style="cursor: pointer">
+          <div
+            routerLink="cart"
+            class="fa-stack fa-lg has-badge"
+            [attr.data-count]="cartItems"
+          >
+            <i class="fa-regular fa-circle" *ngIf="cartItems"></i>
+            <i class="fa fa-shopping-cart fa-lg"></i>
+          </div>
+        </li>
+      </ul>
+
+      <ul *ngSwitchCase="'seller'" class="navbar-nav flex-row">
+        <li class="nav-item me-3 me-lg-1">
+          <a class="nav-link" routerLink="seller-add-product"> Add Product </a>
+        </li>
+        <li><a class="nav-link" routerLink="seller-home">Product List</a></li>
+        <li><a class="nav-link" (click)="logout()">Log out</a></li>
+        <li class="nav-item me-3 me-lg-1">
+          <a class="nav-link d-sm-flex align-items-sm-center" href="#">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+              class="rounded-circle"
+              height="22"
+              alt="Black and White Portrait of a Man"
+              loading="lazy"
+            />
+            <strong class="d-none d-sm-block ms-1">
+              {{ sellerName | titlecase }}
+            </strong>
+          </a>
+        </li>
+      </ul>
+
+      <ul *ngSwitchCase="'user'" class="navbar-nav flex-row">
+        <li class="nav-item me-3 me-lg-1">
+          <a class="nav-link" routerLink="my-orders"> My Orders</a>
+        </li>
+        <li style="cursor: pointer" routerLink="cart">
+          <div class="fa-stack fa-lg has-badge" [attr.data-count]="cartItems">
+            <i class="fa-regular fa-circle" *ngIf="cartItems"></i>
+            <i class="fa fa-shopping-cart fa-lg"></i>
+          </div>
+        </li>
+        <li class="nav-item me-3 me-lg-1">
+          <a class="nav-link d-sm-flex align-items-sm-center" href="#">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+              class="rounded-circle"
+              height="22"
+              alt="Black and White Portrait of a Man"
+              loading="lazy"
+            />
+            <strong class="d-none d-sm-block ms-1">
+              {{ userName | titlecase }}
+            </strong>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="userLogout()">Log out</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Right elements -->
+  </div>
+</nav>
+<!-- Navbar -->

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>Checkout form</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 order-md-2 ml-4">
+      <div class="bg-light rounded-3 p-4">
+        <app-order-summary [cartItems]="cartItems"></app-order-summary>
+      </div>
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Billing address</h4>
+      <div *ngIf="orderMsg !== ''" class="alert alert-info" role="alert">
+        {{ orderMsg }}
+      </div>
+      <form
+        class="needs-validation"
+        #orderData="ngForm"
+        (ngSubmit)="orderNow(orderData.value)"
+      >
+        <div class="row">
+          <div class="mb-3">
+            <label for="email"> Email </label>
+            <input type="email" class="form-control" id="email" ngModel />
+          </div>
+
+          <div class="mb-3">
+            <label for="address"> Mobile </label>
+            <input type="text" class="form-control" ngModel />
+          </div>
+
+          <div class="mb-3">
+            <label for="address2"> Address </label>
+            <input type="text" class="form-control" ngModel />
+          </div>
+        </div>
+
+        <hr class="mb-4" />
+
+        <h4 class="mb-3">Payment Method</h4>
+        <p>Cash On Delivery</p>
+
+        <div class="d-block my-3"></div>
+
+        <hr class="mb-4" />
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          Order Now
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

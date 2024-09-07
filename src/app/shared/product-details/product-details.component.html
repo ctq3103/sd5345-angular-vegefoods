@@ -1,0 +1,101 @@
+<!-- content -->
+<section class="py-5" *ngIf="productData">
+  <div class="container">
+    <div class="row gx-5">
+      <aside class="col-lg-6">
+        <div class="border rounded-4 mb-3 d-flex justify-content-center">
+          <img
+            style="max-width: 100%; max-height: 100vh; margin: auto"
+            class="rounded-4 fit"
+            src="{{ productData.image }}"
+          />
+        </div>
+      </aside>
+
+      <main class="col-lg-6">
+        <div class="ps-lg-3">
+          <h4 class="title text-dark">
+            {{ productData.title }}
+          </h4>
+          <div class="d-flex flex-row my-3">
+            <span class="badge rounded-pill bg-success">In Stock</span>
+          </div>
+
+          <div class="d-flex align-items-center mb-3">
+            <h3>
+              {{
+                productData.price -
+                  (productData.discount / 100) * productData.price
+                  | currency : "USD"
+              }}
+            </h3>
+            <s class="ms-3 text-secondary">{{
+              productData.price | currency : "USD"
+            }}</s>
+            <span class="ms-3 text-success"
+              >{{ productData.discount }}% Off</span
+            >
+          </div>
+
+          <p>
+            {{ productData.description }}
+          </p>
+
+          <div class="row">
+            <dt class="col-3">Type:</dt>
+            <dd class="col-9">{{ productData.type | uppercase }}</dd>
+          </div>
+
+          <hr />
+
+          <div class="row mb-4">
+            <div class="col-md-4 col-6 mb-3">
+              <label class="mb-2 d-block">Quantity</label>
+              <div class="input-group mb-3" style="width: 170px">
+                <button
+                  class="btn btn-white border border-secondary px-3"
+                  type="button"
+                  (click)="handleQuantity('min')"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input
+                  type="text"
+                  class="form-control text-center border border-secondary"
+                  placeholder="14"
+                  value="{{ productQuantity }}"
+                />
+                <button
+                  class="btn btn-white border border-secondary px-3"
+                  type="button"
+                  (click)="handleQuantity('plus')"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            *ngIf="removeCart"
+            class="btn btn-warning shadow-0 mx-2"
+            (click)="removeFromCart(productData.id)"
+          >
+            <i class="me-1 fa fa-shopping-basket"></i> Remove from cart
+          </button>
+          <button
+            *ngIf="!removeCart"
+            class="btn btn-primary shadow-0 mx-2"
+            (click)="addToCart()"
+          >
+            <i class="me-1 fa fa-shopping-basket"></i> Add to cart
+          </button>
+
+          <button class="btn btn-light border border-secondary disabled">
+            <i class="me-1 fa fa-heart fa-lg"></i> Add To Wishlist
+          </button>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+<!-- content -->
